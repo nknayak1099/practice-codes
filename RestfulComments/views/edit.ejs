@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>New Comment</title>
+    </head>
+
+    <body>
+        <form action="/update/<%=comment._id%>" method="post">
+            <label for="username">Enter you name:</label>
+            <input type="text" name="name" id="name" value="<%=comment.name%>" required>
+            <br>
+            <label for=" comment">Enter your comment:</label>
+            <input type="text" name="comment" id="comment" value="<%=comment.comment%>" required>
+            <br>
+            <button>submit</button>
+        </form>
+
+    </body>
+
+</html>

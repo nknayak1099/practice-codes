@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Intro to Ejs</title>
+    </head>
+
+    <body>
+        <h1>Welcome to home page of Intro to ejs.</h1>
+        <h3>Following, how we evaluate javascript inside ejs:-</h3>
+        <p>2+3+4 = <%=2+3+4%>
+        </p>
+        <h3>Following random number is passed through index.js file.</h3>
+        <p>
+            <%=randNum%>
+        </p>
+
+        <h3>Following, how we embed conditionals in ejs.</h3>
+        <ul> students math marks:
+            <%for(let i=0; i<stuMathMarks.length; i++){%>
+                <li>
+                    <%=stuMathMarks[i].name %> : <%=stuMathMarks[i].marks%>
+                </li>
+                <%}%>
+        </ul>
+    </body>
+
+</html>

@@ -1,0 +1,7 @@
+# ignore ALL files in ANY directory named introToExpress/ndoe_modules etc.
+introToExpress/node_modules/
+languageGuesserChallenge/node_modules/
+mongooseBasics/node_modules/
+RestfulComments/node_modules/
+node_modules/
+
