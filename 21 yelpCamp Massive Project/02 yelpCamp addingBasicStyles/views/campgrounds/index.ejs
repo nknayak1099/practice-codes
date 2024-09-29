@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>All Campgrounds</title>
+</head>
+<body>
+    <h1>All Campgrounds</h1>
+    <h3><a href="/">Go to Home Page</a></h3>
+    <ol>
+        <%for(let campground of allCampgrounds){%>
+            <li><a href="/campgrounds/<%=campground._id%>"><%=campground.name%></a> &nbsp;&nbsp;
+                <a href="/campgrounds/edit/<%=campground._id%>">edit</a>
+            <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="post" style='display: inline-block;'>
+                <button><i class="material-icons" style="font-size:20px;color:red">delete</i></button>
+            </form>
+        </li>
+        <%}%>
+    </ol>
+</body>
+</html>

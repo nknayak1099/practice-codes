@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New entry</title>
+</head>
+
+<body>
+  <h2>Add new Grocery to the list:</h2>
+  <form action="/new" method="post">
+    <label for="name"> Enter name of Grocery:
+      <input type="text" id="name" name="name">
+    </label> <br />
+    <label for="price"> Enter Price per Unit:
+      <input type="number" id="price" name="price" min="0" step="0.01" required>
+    </label> <br>
+    <label for="qty"> Enter required Quantity:
+      <input type="number" id="qty" name="qty" min="0" step="0.001" required>
+    </label> <br>
+    <label for=" unit"> Choose the right unit:
+      <select name="unit" id="unit" required>
+        <option value="kgs">kgs</option>
+        <option value="ltr">ltr</option>
+        <option value="nos">nos</option>
+        <option value="dozen">dozen</option>
+      </select>
+    </label><br>
+    <button>Add to List</button>
+  </form>
+
+</body>
+
+</html>

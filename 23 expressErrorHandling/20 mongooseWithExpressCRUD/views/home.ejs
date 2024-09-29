@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD with Mongoose&Express</title>
+</head>
+
+<body>
+  <h1>Grocery List</h1>
+  <h3>To add new Grocery to list: <form action="/new" method="get"><button>click here</button></form>
+  </h3>
+  <ol>
+    <%for(let i=0;i<allProducts.length;i++){%>
+    <li>
+      <%=allProducts[i].name%> - Rs.<%=allProducts[i].price%>/<%=allProducts[i].measurment%> - Required:
+      <%=allProducts[i].quantity%>
+      <%=allProducts[i].measurment%>
+      <form action="/edit/<%=allProducts[i]._id%>" method="get">
+        <button>edit</button>
+      </form>
+      <form action="/delete/<%=allProducts[i]._id%>" method="post">
+        <button>delete</button>
+      </form>
+    </li>
+
+    <%}%>
+     </ol>
+    </body>
+
+</html>

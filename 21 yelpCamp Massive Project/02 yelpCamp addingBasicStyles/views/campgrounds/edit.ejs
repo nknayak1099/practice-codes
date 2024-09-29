@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Campground</title>
+</head>
+<body>
+    <h2>Create New Campground</h2>
+    <form action="/campgrounds/edit/<%=foundCamp._id%>" method="post">
+        <label for="name">
+            Enter Camp Name: 
+            <input type="text" id="name" name="name" required value="<%=foundCamp.name%>">
+        </label>
+        <br>
+        <label for="city">
+            City: 
+            <input type="text" id="city" name="city" value="<%=foundCamp.city.split(',')[0]%>">
+        </label>
+        <br>
+        <label for="state">
+            State:
+            <input type="text" id="state" name="state" value="<%=foundCamp.city.split(',')[1]%>">
+        </label>
+        <br>
+        <button>
+            Submit
+        </button>
+    </form>
+</body>
+</html>

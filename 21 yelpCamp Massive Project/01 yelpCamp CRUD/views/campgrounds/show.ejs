@@ -1,0 +1,14 @@
+<% layout('layouts/boilerplate')-%>
+<section class="d-flex flex-column offset-3" style="max-width: 676px;">
+    <h1 class="text-start"><%=foundCampground.title%></h1>
+    <h4 class='text-end'><%=foundCampground.location%></h4>
+    <img class="img-fluid rounded shadow-lg p-3 mb-5 bg-body-tertiary" src="<%=foundCampground.image%>" alt="">
+    <p>$ <%=foundCampground.price%></p>
+    <p class="text-start"><%=foundCampground.description%></p>
+</section>
+<div class="d-flex mb-3 col-md-8 offset-2">
+    <a href="/campgrounds/edit/<%=foundCampground._id%>" class="btn btn-outline-info px-2 flex-grow-1">Edit</a>
+    <form action="/campgrounds/<%=foundCampground._id%>?_method=delete" class="flex-grow-1 px-2" method="post">
+        <button class="btn btn-outline-danger w-100" >Delete</button>
+    </form>
+</div>

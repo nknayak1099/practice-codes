@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate')-%>
+<h2 class="text-center my-5">Create New Campground</h2>
+<form action="/campgrounds/new" method="post" class="d-flex flex-column offset-3" style="max-width: 576px">
+    <div class="mb-3">
+      <label for="title" class="form-label">Campground Title</label>
+      <input type="text" class="form-control" id="title" name="title" aria-describedby="campground title">
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" class="form-control" id="location" name="location" aria-describedby="location">
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Campground Image URL</label>
+      <input type="text" class="form-control" id="image" name="image" aria-describedby="image-url">
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" step="0.01" class="form-control" id="price" name="price">
+    </div>
+    <label for="description-div" class="form-label">Description</label>
+    <div class="form-floating mb-3" id="description-div">
+        <textarea name="description" id="description" class="form-control" style="height: 100px;"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+  </form>
