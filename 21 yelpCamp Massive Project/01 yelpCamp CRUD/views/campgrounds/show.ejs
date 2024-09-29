@@ -1,14 +1,18 @@
-<% layout('layouts/boilerplate')-%>
-<section class="d-flex flex-column offset-3" style="max-width: 676px;">
-    <h1 class="text-start"><%=foundCampground.title%></h1>
-    <h4 class='text-end'><%=foundCampground.location%></h4>
-    <img class="img-fluid rounded shadow-lg p-3 mb-5 bg-body-tertiary" src="<%=foundCampground.image%>" alt="">
-    <p>$ <%=foundCampground.price%></p>
-    <p class="text-start"><%=foundCampground.description%></p>
-</section>
-<div class="d-flex mb-3 col-md-8 offset-2">
-    <a href="/campgrounds/edit/<%=foundCampground._id%>" class="btn btn-outline-info px-2 flex-grow-1">Edit</a>
-    <form action="/campgrounds/<%=foundCampground._id%>?_method=delete" class="flex-grow-1 px-2" method="post">
-        <button class="btn btn-outline-danger w-100" >Delete</button>
-    </form>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=foundCampground.name%></title>
+</head>
+<body>
+    <h1>Showing: <u><%=foundCampground.name%></u> campground</h1>
+    <h2>City/State: <u><%=foundCampground.city%></u></h2>
+    <ol>
+    <li> <a href="/campgrounds/edit/<%=foundCampground._id%>">edit</a></li>
+    <li><a href="/">Go to Home Page</a></li>
+    <li><a href="/campgrounds">Show all Campgrounds</a></li>
+    <li><a href="/campgrounds/new">Create New Campground</a></li>
+    </ol>
+</body>
+</html>

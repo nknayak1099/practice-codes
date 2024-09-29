@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const app = express();
 
@@ -19,7 +18,6 @@ const Campground = require('./models/campground');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -38,18 +36,16 @@ app.get('/campgrounds/new', async (req, res) => {
 })
 // new campground get submitted to database
 app.post('/campgrounds/new', async (req, res) => {
-    const { title, location, description, image, price } = req.body;
-    const newCamp = new Campground({ title, location, description, image, price });
+    const newCamp = new Campground({ name: req.body.name, city: `${req.body.city}, ${req.body.state}` });
     await newCamp.save();
     res.redirect('/campgrounds');
 })
+// gets to edit form
 // updates campground
-app.put('/campgrounds/edit/:id', async (req, res) => {
-    const { title, location, description, image, price } = req.body;
-    await Campground.findByIdAndUpdate(req.params.id, { title, location, description, image, price })
+app.post('/campgrounds/edit/:id', async (req, res) => {
+    await Campground.findByIdAndUpdate(req.params.id, { name: req.body.name, city: `${req.body.city}, ${req.body.state}` })
     res.redirect('/campgrounds');
 })
-// gets to edit form
 app.get('/campgrounds/edit/:id', async (req, res) => {
     const foundCamp = await Campground.findById(req.params.id);
     res.render('./campgrounds/edit', { foundCamp })

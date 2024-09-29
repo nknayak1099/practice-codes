@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const app = express();
-
+const catchAsync = require('./views/utilities/catchAsync');
 const Campground = require('./models/campground');
 
 (async () => {
@@ -24,46 +24,50 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // home page
-app.get('/', async (req, res) => {
+app.get('/', catchAsync(async (req, res) => {
     res.render('home');
-})
+}))
 // index of all campgrounds
-app.get('/campgrounds', async (req, res) => {
+app.get('/campgrounds', catchAsync(async (req, res) => {
     const allCampgrounds = await Campground.find({});
     res.render('./campgrounds/index', { allCampgrounds })
-})
+}))
 // get form for new campground
-app.get('/campgrounds/new', async (req, res) => {
+app.get('/campgrounds/new', catchAsync(async (req, res) => {
     res.render('./campgrounds/new');
-})
+}))
 // new campground get submitted to database
-app.post('/campgrounds/new', async (req, res) => {
+app.post('/campgrounds/new', catchAsync(async (req, res) => {
     const { title, location, description, image, price } = req.body;
     const newCamp = new Campground({ title, location, description, image, price });
     await newCamp.save();
     res.redirect('/campgrounds');
-})
+}))
 // updates campground
-app.put('/campgrounds/edit/:id', async (req, res) => {
+app.put('/campgrounds/edit/:id', catchAsync(async (req, res) => {
     const { title, location, description, image, price } = req.body;
     await Campground.findByIdAndUpdate(req.params.id, { title, location, description, image, price })
     res.redirect('/campgrounds');
-})
+}))
 // gets to edit form
-app.get('/campgrounds/edit/:id', async (req, res) => {
+app.get('/campgrounds/edit/:id', catchAsync(async (req, res) => {
     const foundCamp = await Campground.findById(req.params.id);
     res.render('./campgrounds/edit', { foundCamp })
-})
+}))
+// shows individual campground in details 
+app.get('/campgrounds/:id', catchAsync(async (req, res) => {
+    const foundCampground = await Campground.findById(req.params.id);
+    res.render('./campgrounds/show', { foundCampground })
+}))
 // delete single campground
-app.delete('/campgrounds/:id', async (req, res) => {
+app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
     const foundCamp = await Campground.findByIdAndDelete(req.params.id);
     res.redirect('/campgrounds');
 
-})
-// shows individual campground in details 
-app.get('/campgrounds/:id', async (req, res) => {
-    const foundCampground = await Campground.findById(req.params.id);
-    res.render('./campgrounds/show', { foundCampground })
+}))
+
+app.use((err, req, res, next) => {
+    res.send('something wend wrong!')
 })
 
 // runs the yelp-camp to run on localhost at port 3000

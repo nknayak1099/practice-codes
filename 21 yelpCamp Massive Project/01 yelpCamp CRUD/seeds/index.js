@@ -12,17 +12,20 @@ const Campground = require('../models/campground');
 });
 
 const arrOfCamp = [];
-const sample = array => array[Math.floor(Math.random() * array.length)];
 
-for (let i = 0; i < 10; i++) {
-    const price = Math.floor(Math.random() * 500 + 100);
-    arrOfCamp.push({
-        title: `${sample(descriptors)} ${sample(places)}`,
-        location: `${sample(cities).city}, ${sample(cities).state}`,
-        price,
-        image: `http://surl.li/jpimtd`,
-        description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis officiis sunt animi, cumque similique, hic deserunt itaque cupiditate inventore corrupti numquam? Fuga maxime rerum libero est? Aperiam iste, aliquam neque cupiditate illo odit laudantium ullam fugiat enim totam quae assumenda officia minima ex excepturi corporis ipsum laborum eaque beatae, ipsa, sint fuga fugit. Magni blanditiis ex necessitatibus obcaecati assumenda. Ipsam laudantium quod maiores nemo labore ex facere, perspiciatis natus dolores vel earum nesciunt voluptatibus odit harum eius incidunt eos fugiat tenetur deserunt! Quisquam, possimus consequuntur!`
-    })
+for (let i = 0; i < 50; i++) {
+    const location = Math.floor(Math.random() * cities.length);
+    const campName1 = Math.floor(Math.random() * descriptors.length);
+    const campName2 = Math.floor(Math.random() * places.length);
+    if (location <= 0 || location == cities.length) {
+        console.log(locaiton)
+        break;
+    } else {
+        arrOfCamp.push({
+            name: `${descriptors[campName1]} ${places[campName2]}`,
+            city: `${cities[location].city}, ${cities[location].state}`
+        })
+    }
 }
 // console.log(arrOfCamp)
 
