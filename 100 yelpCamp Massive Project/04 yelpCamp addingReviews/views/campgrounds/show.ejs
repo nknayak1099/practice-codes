@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate')-%>
+<div class="d-flex justify-content-between">
+<div class="mt-5">
+<section class="d-flex flex-column " style="max-width: 676px;">
+    <h1 class="text-start"><%=foundCampground.title%></h1>
+    <h4 class='text-end'><%=foundCampground.location%></h4>
+    <img class="img-fluid rounded shadow-lg p-3 mb-5 bg-body-tertiary" src="<%=foundCampground.image%>" alt="">
+    <p>$ <%=foundCampground.price%></p>
+    <p class="text-start"><%=foundCampground.description%></p>
+</section>
+
+
+    <div class="d-flex mb-3 col-md-8 offset-1">
+        <a href="/campgrounds/edit/<%=foundCampground._id%>" class="btn btn-info px-2 flex-grow-1">Edit</a>
+        <form action="/campgrounds/<%=foundCampground._id%>?_method=delete" class="flex-grow-1 px-2" method="post">
+            <button class="btn btn-danger w-100" >Delete</button>
+        </form>
+    </div>
+</div>    
+    <div class="mt-5">
+        <h3>Add a review</h3>
+        <form action="/campgrounds/<%=foundCampground._id%>/review" method="post">
+            <div class="mb-3">
+                <label for="review" class="form-label">Review Text</label>
+                <input type="text" id="review" name="review" class="form-control" required>
+                <label for="raiting" class="form-label">Review Text</label>
+                <input type="range" step="1" min="1" max="5" id="rating" name="rating" class="form-control">
+            </div>
+            <button class="btn btn-sm btn-success">submit</button>
+        </form>
+        <hr>
+        <div>
+            <h3><em>All Reviews ---</em></h3>
+            <ul>
+                <%for(let review of foundCampground.reviews){%>
+                    <li><%=review.review%> - <%=review.rating%> 
+                        <form action="/campgrounds/<%=foundCampground._id%>/review/<%=review._id%>?_method=delete" method="post">
+                            <button class="btn btn-sm btn-danger">delete</button>
+                        </form>
+                    </li>
+                <%}%>
+            </ul>
+        </div>
+    </div>
+</div>
